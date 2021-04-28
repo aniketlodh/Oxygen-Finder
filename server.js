@@ -42,9 +42,14 @@ app.post("/new/location",(req,res)=>{
     })
 })
 app.post("/search",async (req,res)=>{
-    const query=req.body.search;
-    const result=await axios.get(`https://oxygenfinder.herokuapp.com/search/${query}`)
-    res.render("home",{foundStores:result.data,moment:moment})
+    try{
+        const query=req.body.search;
+        const result=await axios.get(`https://oxygenfinder.herokuapp.com/search/${query}`)
+        res.render("home",{foundStores:result.data,moment:moment})
+    }catch(err){
+        res.redirect("/");
+    }
+    
 })
 app.get("/search/:searchQuery",(req,res)=>{
     Store.find({district:req.params.searchQuery},null,{sort:{"updatedAt":-1}},(err,foundStores)=>{
