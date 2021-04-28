@@ -1,0 +1,29 @@
+<%- include("partials/header") %>
+<div class="jumbotron">
+    <h1 class="display-5">Add new location</h1>
+    <p class="lead">Please add responsibly. Confirm before adding.</p>
+    <hr class="my-4">
+</div>
+<div class="container">
+    <form action="/new/location" method="POST">
+        <div class="form-group">
+          <label for="storeName">Store Name</label>
+          <input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store Name" required autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input type="text" class="form-control" id="address" name="address" placeholder="Address" required autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label for="district">District</label>
+            <input type="text" class="form-control" id="district" name="district" placeholder="District" required autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone Number" required autocomplete="off">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+</div>
+
+<%- include("partials/footer") %>

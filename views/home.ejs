@@ -1,0 +1,39 @@
+<%- include("partials/header") %>
+<div class="jumbotron">
+    <h1 class="display-4"><a id="name" href="/">Oxygen Finder</a></h1>
+    <!-- <p class="lead">List of all places where you can find Oxygen cylinders</p> -->
+    <hr class="my-4">
+    <p>Add places where one can find oxygen cylinders. Please confirm your source before adding. Your small support can save a life. </p>
+    <a class="btn btn-primary btn-lg" href="/new/location" role="button">Add new locations</a>
+  </div>
+    <div class="list-group container">
+      <div class="ml-auto">
+        <form class="d-flex" action="/search" method="POST">
+          <div class="form-group mr-2">
+            <input type="text" class="form-control" name="search" placeholder="Search for districts" autocomplete="off">
+          </div>
+          <button type="submit" class="btn btn-info" style="height: fit-content;">Search</button>
+        </form>
+      </div>
+      <div class="heading d-flex justify-content-between">
+        <h3 class="p-2">ALL LOCATIONS</h3>
+      </div>
+      <% if(foundStores.length<= 0){ %>
+        <p class="w-100 text-center">No result found</p>
+      <% }else{ %>
+        <% foundStores.forEach((store)=>{ %>
+          <div class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1"><%= store.storeName %></h5>
+                <small>Last Updated:- <%= moment(store.updatedAt).format("DD/MM/YYYY hh:mm:A") %></small>
+              </div>
+              <p class="mb-1"><%= store.address %></p>
+              <p class="mb-1"><%= store.district %></p>
+              <small><%= store.phone %></small>
+          </div>
+        <% }) %>
+      <% } %>
+    </div>
+
+  </div>
+<%- include("partials/footer") %>
