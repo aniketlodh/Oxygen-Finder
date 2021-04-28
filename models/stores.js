@@ -15,6 +15,10 @@ const StoreSchema=new mongoose.Schema({
     phone:{
         type:String,
         required:true
+    },
+    updatedBy:{
+        type:String,
+        required:true
     }
 },{ timestamps: true })
 module.exports= mongoose.model("Store",StoreSchema);

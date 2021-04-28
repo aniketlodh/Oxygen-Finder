@@ -36,7 +36,8 @@ app.post("/new/location",(req,res)=>{
         storeName:capitalizeFirstLetter(req.body.storeName),
         address:capitalizeFirstLetter(req.body.address),
         district:capitalizeFirstLetter(req.body.district),
-        phone:req.body.phone
+        phone:req.body.phone,
+        updatedBy: capitalizeFirstLetter(req.body.author)
     }
     Store.create(store,(err,store)=>{
         if (err) {
