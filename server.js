@@ -14,6 +14,10 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 const PORT=process.env.PORT|| 3000;
 app.use(express.static('public'))
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 app.get("/",(req,res)=>{
     Store.find({},null,{sort:{"createdAt":-1}},(err,foundStores)=>{
         if (err) {
@@ -29,9 +33,9 @@ app.get("/new/location",(req,res)=>{
 })
 app.post("/new/location",(req,res)=>{
     let store={
-        storeName:req.body.storeName,
-        address:req.body.address,
-        district:req.body.district,
+        storeName:capitalizeFirstLetter(req.body.storeName),
+        address:capitalizeFirstLetter(req.body.address),
+        district:capitalizeFirstLetter(req.body.district),
         phone:req.body.phone
     }
     Store.create(store,(err,store)=>{
@@ -43,7 +47,7 @@ app.post("/new/location",(req,res)=>{
 })
 app.post("/search",async (req,res)=>{
     try{
-        const query=req.body.search;
+        const query=capitalizeFirstLetter(req.body.search);
         const result=await axios.get(`https://oxygenfinder.herokuapp.com/search/${query}`)
         res.render("home",{foundStores:result.data,moment:moment})
     }catch(err){
