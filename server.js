@@ -61,6 +61,33 @@ app.get("/search/:searchQuery",(req,res)=>{
         res.json(foundStores);
     })
 })
+
+app.get("/upvote/:storeId",async (req,res)=>{
+    try{
+        const foundStore=await Store.findById(req.params.storeId);
+        if (foundStore==null) {
+            return res.sendStatus(404);
+        }
+        foundStore.upvote++;
+        foundStore.save();        
+        res.redirect("/");
+    }catch (e) {
+        console.log(e);
+    }
+})
+app.get("/downvote/:storeId",async (req,res)=>{
+    try{
+        const foundStore=await Store.findById(req.params.storeId);
+        if (foundStore==null) {
+            return res.sendStatus(404);
+        }
+        foundStore.downvote++;
+        foundStore.save();        
+        res.redirect("/");
+    }catch (e) {
+        console.log(e);
+    }
+})
 app.listen(PORT,(req,res)=>{
     console.log("SERVER STARTED");
 })

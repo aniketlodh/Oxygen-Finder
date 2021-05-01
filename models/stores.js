@@ -16,6 +16,14 @@ const StoreSchema=new mongoose.Schema({
         type:String,
         required:true
     },
+    upvote:{
+        type:Number,
+        default:0
+    },
+    downvote:{
+        type:Number,
+        default:0
+    },
     updatedBy:{
         type:String,
         required:true

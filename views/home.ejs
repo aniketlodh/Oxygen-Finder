@@ -26,7 +26,11 @@
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1"><%= store.storeName %></h5>
                 <small>Last Updated:- <%= moment(store.updatedAt).format("DD/MM/YYYY") %></small>
-              </div>
+                <div>
+                  <div class="mb-2"><a href="/upvote/<%=store._id %>"><%=store.upvote %><i class="fas fa-thumbs-up ml-1"></i></a></div>
+                  <div><a href="/downvote/<%=store._id %>" style="color:red"><%=store.downvote %><i class="fas fa-thumbs-down ml-1"></i></a></div></div>
+                  
+                </div>
               <p class="mb-1"><i class="fas fa-map-marked-alt"></i> <%= store.address %></p>
               <p class="mb-1"><i class="fas fa-map-marker-alt"></i> <%= store.district %></p>
               <p class="mb-1"> Uploaded By:- <%= store.updatedBy %></p>
